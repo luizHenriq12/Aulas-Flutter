@@ -18,8 +18,14 @@ class _HomePageState extends State<HomePage> {
     return Placeholder(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Etanol x Gasolina'),
-          backgroundColor: Colors.blueAccent.shade200,
+          title: Row(
+            children: [
+              Icon(Icons.calculate_outlined, color: Colors.white, size: 36,),
+              SizedBox(width: 8,)
+              Text('Etanol x Gasolina', style: TextStyle(color: Colors.white),),
+          ],
+          ),
+          backgroundColor: Colors.blueAccent.shade700,
         ),
 
         body: Column(
