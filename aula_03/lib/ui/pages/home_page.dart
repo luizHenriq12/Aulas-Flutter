@@ -11,10 +11,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  final _calcBloc = CalcularCombustivelBloc();
+  
 
   @override
   Widget build(BuildContext context) {
+    final _calcBloc = CalcularCombustivelBloc(context);
     return Placeholder(
       child: Scaffold(
         appBar: AppBar(
@@ -28,23 +29,25 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Colors.blueAccent.shade700,
         ),
-        floatingActionButton: FloatingActionButton(onPressed: _calcular, child: Icon(Icons.local_gas_station, size: 34,),),
+        floatingActionButton: FloatingActionButton(onPressed: (){
+          setState(() {
+            _calcBloc.calcular();
+          });
+        }, child: Icon(Icons.local_gas_station, size: 34,),),
         body: Column(
           children: [
             CampoTexto(_calcBloc.gasolinaController, 'Gasolina', 'R\$'),
             CampoTexto(_calcBloc.etanolController, 'Etanol', 'R\$'),
-            ElevatedButton(onPressed: _calcular, child: const Text('Calcular')),
+            ElevatedButton(onPressed: (){
+          setState(() {
+            _calcBloc.calcular();
+          });
+        }, child: const Text('Calcular')),
 
             Text(_calcBloc.resultado, style: TextStyle(fontSize: 32),)
           ],
         ),
       ),
     );
-  }
-
-  void _calcular() {
-    setState(() {
-      _calcBloc.calcular();
-    });
   }
 }
