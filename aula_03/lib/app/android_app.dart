@@ -1,5 +1,5 @@
-import 'package:aula_03/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import '../ui/pages/home_page.dart';
 
 class AndroidApp extends StatelessWidget {
   const AndroidApp({super.key});

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CampoTexto extends StatelessWidget {
-  
+
   final TextEditingController controlador;
   final String texto;
   final String prefixo;
-  
- const CampoTexto(this.controlador, this.texto, this.prefixo, {super.key});
+
+  const CampoTexto(this.controlador, this.texto, this.prefixo, {super.key});
 
   @override
   Widget build(BuildContext context) {
