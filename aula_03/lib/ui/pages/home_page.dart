@@ -1,6 +1,7 @@
 import 'package:aula_03/bloc/calcular_combustivel_bloc.dart';
 import 'package:aula_03/ui/pages/sobre_page.dart';
 import 'package:aula_03/ui/widgets/campo_texto.dart';
+import 'package:aula_03/ui/widgets/menu_lateral.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -13,10 +14,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  late List<Map> listaMenu;
+
+  void _abrirSobre() {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) => SobrePage()
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // Para deixar privado, é necessário colocar o _ no começo do nome da variável
     final _calcBloc = CalcularCombustivelBloc(context);
+
+
+    listaMenu = [({"Texto": "Sobre", "Clique": _abrirSobre})];
 
     return Placeholder(
       child: Scaffold(
@@ -31,28 +44,13 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Colors.blueAccent.shade700,
         ),
-        drawer: Drawer(
-          child: Column(
-            children: [
-              DrawerHeader(child: Column(
-                  children: [
-                    Icon(Ionicons.car_sport, size: 80, color: Colors.blueAccent.shade700,),
-                    Text('Gasolina x Etanol')
-              ] 
-              )),
-              ListTile(title: Text('Sobre'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SobrePage()));
-              },),
-              ListTile(title: Text('Item 2'), onTap: () {},),
-              ListTile(title: Text('Item 3'), onTap: () {},),
-            ],    //CTRL + D copia e cola texto na linha de baixo
-          ),
-        ),
+        drawer: MenuLateral(listaItens: listaMenu),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() { _calcBloc.calcular(); });
           },
-          child: Icon(Icons.local_gas_station, size: 34,),),
+          child: Icon(Icons.local_gas_station, size: 34,),
+          ),
 
         body: Column(
           children: [
